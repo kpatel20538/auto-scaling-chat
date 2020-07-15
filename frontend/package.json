@@ -1,7 +1,7 @@
 {
   "name": "my-project",
   "scripts": {
-    "start": "parcel serve ./src/index.html",
+    "start": "parcel serve ./src/index.html --https",
     "build": "parcel build ./src/index.html"
   },
   "dependencies": {

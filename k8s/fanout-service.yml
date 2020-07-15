@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fanout-ingress
+  annotations:
+    dev.okteto.com/generate-host: "true"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: "/"
+            backend:
+              serviceName: fanout-service
+              servicePort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fanout-service
+spec:
+  type: ClusterIP
+  selector:
+    app: fanout-app
+  ports:
+    - port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fanout-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fanout-app
+  template:
+    metadata:
+      labels:
+        app: fanout-app
+    spec:
+      containers:
+        - name: fanout-container
+          image: kpatel20538/auto-scaling-chat:fanout
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: 200m
+            requests:
+              memory: 256Mi
+              cpu: 200m
