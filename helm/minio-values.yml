@@ -1,0 +1,16 @@
+minio:
+  mode: standalone
+  accessKey: ""
+  secretKey: ""
+  replicas: 1
+  persistence:
+    size: 1Gi
+    existingClaim: ""
+
+  defaultBucket:
+    enabled: false
+
+  resources:
+    limits:
+      memory: 256Mi
+      cpu: 500m
