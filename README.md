@@ -33,4 +33,4 @@ $ helm install -f ./helm/openfaas-values.yml \
 
 **Step 5.** Build/Deploy all functions
 
-```sudo faas-cli up -f message-fn.yml --namespace=$OKTETO_NAMESPACE```
+```sudo faas-cli up -f ./api/stack.yml --namespace=$OKTETO_NAMESPACE```
