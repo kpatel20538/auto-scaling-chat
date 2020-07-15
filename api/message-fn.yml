@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: https://openfaas-ingress-kpatel20538.cloud.okteto.net
+functions:
+  message-fn:
+    lang: node12
+    handler: ./message-fn
+    image: kpatel20538/message-fn:latest
+

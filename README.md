@@ -20,3 +20,17 @@ $ cd frontend
 $ npm build
 $ cd ..
 ```
+
+**Step 4.** Install OpenFAAS
+
+```
+$ helm install -f ./helm/openfaas-values.yml \
+  --set openfaas.adminPassword=$OPENFAAS_PASSWORD \
+  --set openfaas.functionNamespace=$OKTETO_NAMESPACE \
+  --namespace=$OKTETO_NAMESPACE \
+  api okteto/openfaas
+```
+
+**Step 5.** Build/Deploy all functions
+
+```sudo faas-cli up -f message-fn.yml --namespace=$OKTETO_NAMESPACE```
