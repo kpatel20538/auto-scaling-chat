@@ -29,19 +29,21 @@ spec:
     - port: 8080
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: fanout-deployment
+  name: fanout-stateful-set
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: fanout-app
+  serviceName: fanout-service
+  replicas: 3
   template:
     metadata:
       labels:
         app: fanout-app
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
         - name: fanout-container
           image: kpatel20538/auto-scaling-chat:fanout

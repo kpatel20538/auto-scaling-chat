@@ -5,6 +5,7 @@ metadata:
   labels:
     app: pubsub-app
 spec:
+  clusterIP: None
   ports:
   - port: 6379
   type: ClusterIP
@@ -20,7 +21,7 @@ spec:
     matchLabels:
       app: pubsub-app
   serviceName: pubsub-service
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:

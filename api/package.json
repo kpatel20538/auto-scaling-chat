@@ -12,7 +12,9 @@
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/router": "^9.3.1",
+    "async-redis": "^1.1.7",
     "koa": "^2.13.0",
-    "koa-bodyparser": "^4.3.0"
+    "koa-bodyparser": "^4.3.0",
+    "string-hash": "^1.1.3"
   }
 }
